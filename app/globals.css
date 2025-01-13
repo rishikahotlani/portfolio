@@ -3,19 +3,64 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-background: 245, 242, 238;
+  --color-primary: 168, 153, 141;
+  --color-secondary: 199, 185, 175;
+  --color-accent: 133, 117, 104;
+  --color-text: 74, 63, 55;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--color-text));
+  background-color: rgb(var(--color-background));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    color: rgb(var(--color-accent));
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-[rgb(var(--color-primary))] text-white px-4 py-2 rounded-md hover:bg-[rgb(var(--color-accent))] transition-colors;
+  }
+  .section {
+    @apply py-20;
+  }
+}
+
+@keyframes buzzing {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.animate-buzzing-border {
+  animation: buzzing 1.5s ease-in-out infinite;
+}
+
+@keyframes borderPulse {
+  0% {
+    box-shadow: 0 0 10px 2px rgba(var(--color-primary), 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px 4px rgba(var(--color-primary), 0.6);
+  }
+  100% {
+    box-shadow: 0 0 10px 2px rgba(var(--color-primary), 0.4);
+  }
+}
+
+.border-animation {
+  animation: borderPulse 2s infinite ease-in-out;
 }
